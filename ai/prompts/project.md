@@ -43,3 +43,34 @@
 - **多地點/多時區支援**: 系統預設所有使用者都在單一時區與單一辦公地點。
 - **生物辨識整合**: 不支援指紋、人臉辨識等硬體打卡設備。
 - **詳細的稽核軌跡 (Audit Trail)**: 不會記錄每一次出勤資料修改的詳細歷史（誰、在什麼時間、改了什麼）。
+
+## 流程圖
+
+### 打卡/簽到 (Clock-in/Clock-out)
+
+```mermaid
+sequenceDiagram
+    participant User as 員工
+    participant System as 系統
+    participant Database as 資料庫
+
+    User->>System: 點擊「上班打卡」或「下班打卡」按鈕
+    System->>System: 獲取當前時間與使用者ID
+    System->>Database: 將時間與使用者ID存入打卡紀錄
+    Database-->>System: 確認紀錄已儲存
+    System-->>User: 顯示「打卡成功」訊息
+```
+
+### 查詢個人出勤紀錄
+
+```mermaid
+sequenceDiagram
+    participant User as 員工
+    participant System as 系統
+    participant Database as 資料庫
+
+    User->>System: 進入「查詢出勤紀錄」頁面
+    System->>Database: 根據使用者ID查詢其所有打卡紀錄
+    Database-->>System: 返回該使用者的所有紀錄
+    System-->>User: 在頁面上以列表或表格形式顯示紀錄
+```
