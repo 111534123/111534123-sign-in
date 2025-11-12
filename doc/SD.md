@@ -16,8 +16,8 @@
 ## 2. 系統架構（Architecture）
 
 
-[ Web / Mobile Frontend ]
-│   HTTPS + JWT
+[ Web ]
+│   HTTPS
 ▼
 [ Backend RESTful API ]  (Spring Boot / Node ... )
 │
@@ -46,7 +46,7 @@ DB 儲存出勤與請假資料
 
 ## 4. 資料庫設計（ER Diagram）
 
-mermaid
+```mermaid
 erDiagram
 EMPLOYEES {
 BIGINT id PK
@@ -88,6 +88,7 @@ DATETIME created_at
 
     EMPLOYEES ||--o{ ATTENDANCE_RECORDS : "1 to many"
     EMPLOYEES ||--o{ LEAVE_REQUESTS : "1 to many"
+```
 
 
 
@@ -178,7 +179,7 @@ DATETIME created_at
 
 ### 7.1 員工打卡流程
 
-mermaid
+```mermaid
 sequenceDiagram
 participant Employee
 participant UI
@@ -190,6 +191,7 @@ participant DB
     API ->> DB: 新增出勤資料
     DB -->> API: success
     API -->> UI: 打卡成功訊息
+```
 
 
 
@@ -197,7 +199,7 @@ participant DB
 
 ### 7.2 請假審核流程
 
-mermaid
+```mermaid
 sequenceDiagram
 participant Supervisor
 participant UI
@@ -215,6 +217,7 @@ participant DB
     API ->> DB: 更新請假狀態
     DB -->> API: success
     API -->> UI: 顯示成功訊息
+```
 
 
 
